@@ -11,7 +11,9 @@ router.post('/create', async(req, res,next) => {
 router.get('/view', async(req, res,next) => {
     await poll_controller.viewpoll(req,res,next)
 })
-router.get('/view/:uname', async(req, res,next) => {})
+router.get('/view/:uname', async(req, res,next) => {
+    await poll_controller.viewpollbyusername(req,res,next)
+})
 router.get('/viewall',async(req,res,next)=>{
     await poll_controller.viewallpoll(req,res,next)
 })

@@ -27,7 +27,7 @@ const viewpoll = async (req, res,next) => {
     try{
         
     const {user_id} = req.body
-    const response = await poll_modal.view_poll_by_user_name(user_id)
+    const response = await poll_modal.view_poll_of_user(user_id)
     if(response.status == true){
         return res.status(200).send(response.message)
     }
@@ -66,5 +66,18 @@ const viewallpoll = async (req, res,next) => {
             return res.status(500).send("something went wrong")
         }
 }
+const viewpollbyusername=async(req,res,next)=>{
+    try{
+        const {uname} = req.params
+        const response = await poll_modal.view_poll_by_user_name(uname)
+        if(response.status == true){
+            return res.status(200).send(response.message)
+        }
+        return res.status(400).send(response.message)
+    
+        }catch(e){
+            return res.status(500).send("something went wrong")
+        }
 
-module.exports = { createpoll, viewpoll, viewpollbyid, viewallpoll }
+}
+module.exports = { createpoll, viewpoll, viewpollbyid, viewallpoll, viewpollbyusername}

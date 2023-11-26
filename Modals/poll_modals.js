@@ -43,9 +43,23 @@ const view_all_poll = async () => {
         return { 'status': false, 'message': err }
     }
 }
-const view_poll_by_user_name = async (user_id) => {
+const view_poll_of_user = async (user_id) => {
     try {
         const response = await promisePool.query('SELECT poll_id,title,description FROM polls WHERE user_id = ?', [user_id]);
+        console.log(response[0])
+        if (response.length == 0) {
+            return { 'status': false, 'message': 'No polls found' };
+        }
+        return { 'status': true, 'message': response[0] };
+    }
+    catch (err) {
+        console.log(err)
+        return { 'status': false, 'message': err }
+    }
+}
+const view_poll_by_user_name = async (user_name) => {
+    try {
+        const response = await promisePool.query('SELECT poll_id,title,description FROM polls WHERE user_id = (select user_id from users where username = ?)', [user_name]);
         console.log(response[0])
         if (response.length == 0) {
             return { 'status': false, 'message': 'No polls found' };
@@ -87,4 +101,4 @@ WHERE
 
     }}
 
-    module.exports = { create_poll, view_all_poll, view_poll_by_user_name, view_complete_pole_by_id }
+    module.exports = { create_poll, view_all_poll, view_poll_by_user_name, view_complete_pole_by_id,view_poll_of_user }

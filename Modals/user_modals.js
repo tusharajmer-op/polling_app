@@ -29,8 +29,6 @@ const register = async (name, username, password) => {
         return { 'status': false, 'message': err };
     }
 }
-const logout = async (req, res) => {
 
-}  
 
-module.exports = { login, register, logout}
+module.exports = { login, register}
