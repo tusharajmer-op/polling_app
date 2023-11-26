@@ -2,12 +2,30 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 
 const generate_token = (payload) => {
-    const token = jwt.sign(payload, JWT_SECRET,{expiresIn : 600});
-    return token;
+    try {
+        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: 600 });
+        return { 'status': true, 'message': token }
+    }
+    catch (err) {
+        
+        if (err == jwt.JsonWebTokenError) {
+            return { 'status': false, 'message': 'Token Error' };
+        }
+    }
 }
 const verify_token = (token) => {
-    const payload = jwt.verify(token, JWT_SECRET);
-    return payload;
+    try {
+        const payload = jwt.verify(token, JWT_SECRET);
+        return { 'status': true, 'message': payload };
+    } catch (err) {
+        
+        if (err.name == 'TokenExpiredError') {
+            return { 'status': false, 'message': 'Token Expired' };
+        }
+        else if (err.name == 'JsonWebTokenError') {
+            return { 'status': false, 'message': 'Token Error' };
+        }
+    }
 }
 const expire_token = (token) => {
     const payload = jwt.decode(token);
