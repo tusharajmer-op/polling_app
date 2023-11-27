@@ -24,7 +24,7 @@ const register = async (name, username, password) => {
         await promisePool.query('COMMIT'); 
         return { 'status': true, 'message': 'user registered successfully','user_id':user_id[0].user_id };
     } catch (err) {
-        console.log(err)
+
         await promisePool.query('ROLLBACK');
         return { 'status': false, 'message': err };
     }

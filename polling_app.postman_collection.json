@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "40709061-2aef-4c46-96e4-8e739d38b022",
+		"name": "polling_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16936240"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Tushar Mishra\",\n    \"username\":\"mishratushar1\",\n    \"password\": \"12345\"\n}\n"
+				},
+				"url": {
+					"raw": "localhost:3765/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"mishratushar1\",\n    \"password\": \"12345\"\n}\n"
+				},
+				"url": {
+					"raw": "localhost:3765/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_poll",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"dummy poll for test\",\n    \"description\": \"dummy poll description for test\",\n    \"questions\": [\n        {\n            \"question\": \"question 1\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 2\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 3\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 4\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 5\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 6\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:3765/poll/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"poll",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cast_vote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\":[\n        {\"question_id\":7,\n        \"option_id\":25},\n        {\"question_id\":8,\n        \"option_id\":29}\n    ]\n\n    \n}"
+				},
+				"url": {
+					"raw": "localhost:3765/vote/poll/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"vote",
+						"poll",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_created_polls",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3765/poll/view",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"poll",
+						"view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_poll_bu_user_name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3765/poll/view/mishratushar1",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"poll",
+						"view",
+						"mishratushar1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show_all_polls",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"dummy poll\",\n    \"description\": \"dummy poll description\",\n    \"questions\": [\n        {\n            \"question\": \"question 1\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 2\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:3765/poll/viewall",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"poll",
+						"viewall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show_poll_through_id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"dummy poll\",\n    \"description\": \"dummy poll description\",\n    \"questions\": [\n        {\n            \"question\": \"question 1\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 2\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:3765/poll/view/poll/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"poll",
+						"view",
+						"poll",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show_poll_result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pc2hyYXR1c2hhcjEiLCJpYXQiOjE3MDEwMjMyNzAsImV4cCI6MTcwMTAyMzg3MH0.a3YAtH9NITM3NRUbIfdEPwF9PLuVr2Pb96JaRBvLNVA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"dummy poll\",\n    \"description\": \"dummy poll description\",\n    \"questions\": [\n        {\n            \"question\": \"question 1\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        },\n        {\n            \"question\": \"question 2\",\n            \"options\": [\"A\", \"B\", \"C\", \"D\"]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:3765/vote/view/result/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3765",
+					"path": [
+						"vote",
+						"view",
+						"result",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

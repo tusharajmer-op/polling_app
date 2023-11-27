@@ -69,6 +69,7 @@ const viewallpoll = async (req, res,next) => {
 const viewpollbyusername=async(req,res,next)=>{
     try{
         const {uname} = req.params
+
         const response = await poll_modal.view_poll_by_user_name(uname)
         if(response.status == true){
             return res.status(200).send(response.message)

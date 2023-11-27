@@ -6,7 +6,6 @@ const check_incoming_request = (req, res, next) => {
         return res.status(400).send("Please provide the token")
     }
     const token_data = token.verify_token(authorization);
-    console.log(token_data);
     if (!token_data.status) {
         return res.status(400).send(token_data.message);
     }

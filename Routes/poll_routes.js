@@ -3,9 +3,8 @@ const {check_incoming_request} = require('../Middleware')
 const {poll_controller} = require('../Controller')
 router.all('*',(req,res,next)=>{
    check_incoming_request(req,res,next)})
-
 router.post('/create', async(req, res,next) => {
-    console.log("in poll routes")
+
     await poll_controller.createpoll(req,res,next)
 })
 router.get('/view', async(req, res,next) => {

@@ -7,7 +7,6 @@ const vote = async (params) => {
         await promisePool.query('START TRANSACTION');
         let got_error = false;
         for (const ques of question) {
-            console.log(ques);
             const { question_id, option_id } = ques;  
 
             const result = await promisePool.query(`

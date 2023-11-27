@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
-
+const env = require('dotenv').config().parsed
 const connection = {
-  host: '127.0.0.1',
-  user: 'polling_app',
-  password: '12345',
-  database: 'polling_app'
+  host: env.DBHOST ,
+  user: env.DBUSERNAME,
+  password: env.DBPASSWORD,
+  database: env.DBDATABASE,
+  port: env.DBPORT,
 };
 
 const pool = mysql.createPool(connection)
